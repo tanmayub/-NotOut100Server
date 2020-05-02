@@ -9,7 +9,7 @@ This Server porject was copied from [mmserver](https://github.com/Frankenmint/mm
 to install:
 
 ```
-git clone https://github.com/tanmayub/NotOut100.git
+git clone https://github.com/tanmayub/NotOut100Server.git
 
 cd server
 
