@@ -12,5 +12,8 @@ web-report/
 
 */node_modules
 
+pages/
+.next/
+
 # macOS
 .DS_Store
