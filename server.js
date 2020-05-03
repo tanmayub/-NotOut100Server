@@ -3,11 +3,6 @@
 // Article - https://www.codementor.io/@codementorteam/socketio-multi-user-app-matchmaking-game-server-2-uexmnux4p
 
 var express = require('express');
-var GameCollection = require('./classes/GameCollection')
-var GameObject = require('./classes/GameObject')
-var Player = require('./classes/Player')
-var maxPlayersAllowed = 20;
-var maxLoopLimit = 20;
 var app = express();
 var fs = require('fs');
 var server = require('http').createServer(app);
@@ -23,6 +18,12 @@ server.listen(port, function () {
 app.use(express.static(__dirname));
 
 // Entire GameCollection Object holds all games and info
+
+var GameCollection = require('./classes/GameCollection')
+var GameObject = require('./classes/GameObject')
+var Player = require('./classes/Player')
+var maxPlayersAllowed = 20;
+var maxLoopLimit = 20;
 
 var gameCollection =  new GameCollection();
 
