@@ -70,7 +70,7 @@ function gameSeeker (socket) {
 function killGame(socket) {
     var notInGame = true, destroyGame = false;
     var destroyGameId = 0, destroyGameIndex = -1;
-
+    console.log("kill game");
     if(gameCollection.TotalGameCount > 0) {
         gameCollection.GameList.map((game, index) => {
             if(game.gameObject.PlayerList.has(socket.username) && game.gameObject.PlayerCt === 1) {
@@ -108,24 +108,40 @@ function DestroyGame(socket, destroyGameId, destroyGameIndex) {
 function RemoveUserFromActiveGames(socket) {
     var destroyGame = false;
     var destroyGameId = 0, destroyGameIndex = -1;
-
     if(gameCollection.TotalGameCount > 0) {
         gameCollection.GameList.map((game, index) => {
             if(game.gameObject.PlayerList.has(socket.username)) {
-                game.gameObject.PlayerList.delete(socket.username);
-                game.gameObject.PlayerCt--;
                 if(game.gameObject.PlayerCt === 1) {
                     destroyGame = true;
-                    destroyGameId = game.GameId;
+                    destroyGameId = game.gameObject.GameId;
                     destroyGameIndex = index;
                 }
+                game.gameObject.PlayerList.delete(socket.username);
+                game.gameObject.PlayerCt--;
             }
         });
 
         if(destroyGame) {
             DestroyGame(socket, destroyGameId, destroyGameIndex);
         }
+        else {
+            socket.broadcast.emit('user left', {
+                username: socket.username,
+                numUsers: numUsers
+            });
+        }
     }
+}
+
+function CheckIfInGame(socket) {
+    var inGame = false;
+    gameCollection.GameList.map(game => {
+        if(game.gameObject.PlayerList.has(socket.username)) {
+            inGame = true;
+        }
+    });
+
+    return inGame;
 }
 
 
@@ -193,6 +209,7 @@ io.on('connection', function (socket) {
         }
     });
 
+    // join game
     socket.on('joinGame', function () {
         console.log(socket.username + " wants to join a game");
         
@@ -218,11 +235,11 @@ io.on('connection', function (socket) {
     });
 
     socket.on('leaveGame', function() {
-        if (gameCollection.TotalGameCount == 0){
-           socket.emit('notInGame');         
+        if (!CheckIfInGame(socket)){
+            socket.emit('notInGame');         
         }    
         else {
-          killGame(socket);
+            killGame(socket);
         }    
     });
 
