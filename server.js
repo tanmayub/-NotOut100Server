@@ -112,7 +112,7 @@ function RemoveUserFromActiveGames(socket) {
     if(gameCollection.TotalGameCount > 0) {
         gameCollection.GameList.map((game, index) => {
             if(game.gameObject.PlayerList.has(socket.username)) {
-                game.gameObject.PlayerList.remove(socket.username);
+                game.gameObject.PlayerList.delete(socket.username);
                 game.gameObject.PlayerCt--;
                 if(game.gameObject.PlayerCt === 1) {
                     destroyGame = true;
