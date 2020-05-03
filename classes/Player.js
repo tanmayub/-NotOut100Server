@@ -1,9 +1,5 @@
-class Player {
-    PlayerName;
-
-    constructor(PlayerName) {
-        this.PlayerName = PlayerName;
-    }
+function Player(PlayerName) {
+    this.PlayerName = PlayerName;
 }
 
 module.exports = Player
