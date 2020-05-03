@@ -10,4 +10,4 @@ class GameObject {
     }
 }
 
-module.exports.GameObject = GameObject
+module.exports = GameObject
