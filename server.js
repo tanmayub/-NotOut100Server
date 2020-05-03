@@ -19,9 +19,9 @@ app.use(express.static(__dirname));
 
 // Entire GameCollection Object holds all games and info
 
-var GameCollection = require('GameCollection.js');
-var GameObject = require('GameObject.js');
-var Player = require('Player.js');
+var GameCollection = require('./GameCollection')
+var GameObject = require('./GameObject')
+var Player = require('./Player')
 var maxPlayersAllowed = 20;
 var maxLoopLimit = 20;
 
