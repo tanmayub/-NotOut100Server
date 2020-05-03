@@ -8,4 +8,4 @@ class GameCollection {
     }
 }
 
-module.exports = GameCollection;
+module.exports.GameCollection = GameCollection;

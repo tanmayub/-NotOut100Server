@@ -19,20 +19,20 @@ app.use(express.static(__dirname));
 
 // Entire GameCollection Object holds all games and info
 
-var GameCollection = require('./GameCollection')
-var GameObject = require('./GameObject')
-var Player = require('./Player')
+var GameCollection = require('./classes/GameCollection');
+var GameObject = require('./classes/GameObject');
+var Player = require('./classes/Player');
 var maxPlayersAllowed = 20;
 var maxLoopLimit = 20;
 
-var gameCollection =  new GameCollection();
+var gameCollection =  new GameCollection.GameCollection();
 
 var loopLimit = 0; 
 
 function buildGame(socket) {
     var setUsers = new Set();
     setUsers.add(socket.username);
-    var gameObject = new GameObject((Math.random()+1).toString(36).slice(2, 18), setUsers);
+    var gameObject = new GameObject.GameObject((Math.random()+1).toString(36).slice(2, 18), setUsers);
     gameCollection.TotalGameCount ++;
     gameCollection.GameList.push({gameObject});
 
