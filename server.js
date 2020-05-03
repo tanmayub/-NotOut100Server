@@ -3,9 +3,9 @@
 // Article - https://www.codementor.io/@codementorteam/socketio-multi-user-app-matchmaking-game-server-2-uexmnux4p
 
 var express = require('express');
-var GameCollection = require('./classes/GameCollection');
-var GameObject = require('./classes/GameObject');
-var Player = require('./classes/Player');
+var GameCollection = require('./classes/GameCollection')
+var GameObject = require('./classes/GameObject')
+var Player = require('./classes/Player')
 var maxPlayersAllowed = 20;
 var maxLoopLimit = 20;
 var app = express();
