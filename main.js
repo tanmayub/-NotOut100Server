@@ -14,6 +14,7 @@ $(function() {
     var $inputMessage = $('.inputMessage'); // Input message input box
   
     var $loginPage = $('.login.page'); // The login page
+    var $lobbyPage = $('.lobby.page');
     var $chatPage = $('.chat.page'); // The chatroom page
     var $joinGame = $('.joinGame');
     var $leaveGame = $('.leaveGame');
@@ -27,6 +28,10 @@ $(function() {
   
     var socket = io();
   
+    function showLobbies(lobbies) {
+
+    }
+    
     function addParticipantsMessage (data) {
       var message = '';
       if (data.numUsers === 1) {
@@ -44,13 +49,14 @@ $(function() {
       // If the username is valid
       if (username) {
         $loginPage.fadeOut();
+        // $lobbyPage.show();
+        // TODO
         $chatPage.show();
         $loginPage.off('click');
         $currentInput = $inputMessage.focus();
   
         // Tell the server your username
-        socket.emit('add user', username);
-   
+        socket.emit('add user', username);   
       }
     }
   
@@ -76,14 +82,7 @@ $(function() {
       var $el = $('<li>').addClass('log').text(message);
       addMessageElement($el, options);
     }
-  
-  
-  
-  
-  
-  
-  
-  
+    
     // Adds the visual chat message to the message list
     function addChatMessage (data, options) {
       // Don't fade the message in if there is an 'X was typing'
@@ -252,6 +251,8 @@ $(function() {
       log(message, {
         prepend: true
       });
+      // showLobbies(data.lobbies);
+      // TODO
       addParticipantsMessage(data);
     });
   

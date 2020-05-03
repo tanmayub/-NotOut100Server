@@ -1,7 +1,7 @@
 {
     "name": "notout100-server",
     "version": "1.0.0",
-    "description": "game server matchmaking demo made by Frakenmint with ♥️",
+    "description": "notout100 server taken from -game server matchmaking demo made by Frakenmint",
     "main": "index.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
